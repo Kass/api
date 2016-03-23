@@ -1,2 +1,2 @@
 # api
-Kass API
+Kass API v1
