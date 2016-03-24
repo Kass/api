@@ -1,14 +1,14 @@
 ---
-title: API Reference
+title: Kass API v1
 
 language_tabs:
   - shell
+  - csharp
+  - php
   - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://kass.is'>Kass - milli vina</a>
 
 includes:
   - errors
@@ -16,153 +16,242 @@ includes:
 search: true
 ---
 
-# Introduction
+# Inngangur
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Velkomin í skjölun á Kass API v1.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Auðkenning
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Hver aðgerð í Kass API notar HTTP Basic Auth auðkenningu (sjá curl -u í dæmum). Aðgangskóði söluaðila er sendur inn sem notandanafn á meðan svæðið fyrir lykilorð er tómt.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`-u um2JjfnJbEUJnCpjKiV94jqp:`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangskóða.
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+# Stofna rukkun
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl https://api.kass.is/v1/payments \
+    -u um2JjfnJbEUJnCpjKiV94jqp: \
+    -d @payment_request.json
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+> Dæmi um innsend JSON gögn (payment_request.json)
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "amount": 2199,
+    "description": "Kass bolur",
+    "image_url": "...",
+    "order": "ABC123",
+    "recipient": "7728440",
+    "notify_url": "https://example.com/callbacks/kass"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+> Dæmi um JSON svargögn ef aðgerð tókst
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```json
+{
+    "success": true,
+    "id": "3e6975e8-77cb-48b7-7722-3dfe47677bbc",
+    "created": 1458748385
+}
+```
 
-### HTTP Request
+> Dæmi um JSON svargögn ef upp kom villa
 
-`GET http://example.com/kittens/<ID>`
+```json
+{
+    "success": false,
+    "error": {
+        "code": "200",
+        "key": "recipient_not_found",
+        "message": "Viðtakandi fannst ekki"
+    }
+}
+```
 
-### URL Parameters
+Þessi aðgerð stofnar rukkun og sendir hana samstundis á viðtakanda. Viðtakandinn hefur þá 90 sekúndur til að bregðast við rukkuninni, hvort sem er að greiða eða hafna. Eftir þann tíma rennur rukkunin út og viðtakandi getur ekki lengur greitt.
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+### HTTP
 
+`POST https://api.kass.is/v1/payments`
+
+### Skýring á innsendum svæðum
+
+Svæði | Tegund | Skýring
+--------- | ------- | -----------
+amount | Tala | Heildarupphæð greiðslu til rukkunar, skráð án aukastafa.
+description | Strengur | Skilaboð til kaupanda. Valfrjálst svæði.
+image_url | Strengur | Slóð að mynd sem geymd er á vef söluaðila. Kass appið sækir myndina út frá slóðinni þannig að kaupandinn sjái hana. Valfrjálst svæði.
+order | Strengur | Pöntunarnúmer sem söluaðili getur sent með. Númerið er sent til baka til kerfis söluaðila eftir að kaupandi greiðir (notify_url). Kaupandi sér ekki númerið. Valfrjálst svæði.
+recipient | Strengur | Notandanafn eða símanúmer viðtakanda. Styður aðeins einn viðtakanda í einu. Símanúmer má innihalda landkóða (+354) en þarf þess ekki.
+notify_url | Strengur | Slóð hjá söluaðila sem Kass kerfið kallar í eftir að kaupandi hefur greitt. Sjá nánar kaflann Sjálfvirk tilkynning frá Kass.
+
+### Skýring á svæðum í svargögnum
+
+Svæði | Tegund | Skýring
+----- | ------ | -------
+success | Sanngildi | Skilar true ef öll gögn eru rétt og rukkun hefur verið send á viðtakandann.
+id | Strengur	| Númer rukkunar sem er notað til að athuga stöðu.
+created | Tala | Tímasetningin þegar rukkunin var stofnuð. Unix tímastimpill.
+error | JSON | Upplýsingar um villu ef success gildið er false. Sjá nánar um villukóða í kaflanum Mögulegir villukóðar.
+
+# Sækja upplýsingar um rukkun
+
+```shell
+curl https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc \
+    -u um2JjfnJbEUJnCpjKiV94jqp:
+```
+
+> Dæmi um JSON svargögn
+
+```json
+{
+    "id": "3e6975e8-77cb-48b7-7722-3dfe47677bbc",
+    "transaction_id": "a917be59-f35a-478f-a5d9-19bf467972ad",
+    "amount": 2199,
+    "description": "Kass bolur",
+    "image_url": "...",
+    "status": "paid",
+    "order": "abc123",
+    "created": 1458748385,
+    "updated": 1458748422,
+    "expires": 1458748475
+}
+```
+
+Skilar upplýsingum um rukkun. Ef eingöngu er verið að athuga stöðu rukkunar, sjá kaflann Athuga stöðu á rukkun.
+
+### HTTP
+
+`GET https://api.kass.is/v1/payments/[id]`
+
+### Skýring á svæðum
+
+Svæði | Tegund | Skýring
+----- | ------ | -------
+id | Strengur| Númer rukkunar.
+transaction_id | Strengur | Færslunúmer ef kaupandi hefur greitt. Ef rukkunin er ógreidd, útrunnin eða var hafnað er ekkert númer sent.
+amount | Tala | Upphæð sem send var inn þegar rukkun var stofnuð.
+description | Strengur | Skilaboð til kaupanda sem send voru inn þegar rukkun var stofnuð.
+image_url | Strengur | Slóð að mynd sem send var inn þegar rukkun var stofnuð.
+status | Strengur | Staðan á rukkuninni.<br>**pending** = Ógreidd.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði.<br>**expired** = Rukkun rann út.
+order | Strengur | Pöntunarnúmer sem söluaðili sendi inn þegar rukkun var stofnuð.
+created | Tala | Tímasetningin þegar rukkunin var stofnuð. Unix tímastimpill.
+updated | Tala | Tímasetningin þegar stöðu á rukkuninni var breytt. Ef staðan er óbreytt þá er þessi tími sami og created_at. Unix tímastimpill.
+expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.
+
+# Athuga stöðu á rukkun
+
+```shell
+curl https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc/status \
+    -u um2JjfnJbEUJnCpjKiV94jqp:
+```
+
+> Dæmi um JSON svargögn
+
+```json
+{
+    "id": "3e6975e8-77cb-48b7-7722-3dfe47677bbc",
+    "status": "pending",
+    "expires": 1458748475
+}
+```
+
+Skilar stöðunni á rukkun, þ.e.a.s. hvort hún sé ógreidd, hafi verið greidd, hafi verið hafnað eða sé útrunnin.
+
+### HTTP
+
+`GET https://api.kass.is/v1/payments/[id]/status`
+
+### Skýring á svæðum
+
+Svæði | Tegund | Skýring
+----- | ------ | -------
+id | Strengur | Númer rukkunar.
+status | Strengur | Staðan á rukkuninni.<br>**pending** = Ógreidd.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði.<br>**expired** = Rukkun rann út.
+expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.
+
+# Sjálfvirk tilkynning frá Kass (notification callback)
+
+> Dæmi um JSON gögn
+
+```json
+{
+    "payment_id": "3e6975e8-77cb-48b7-7722-3dfe47677bbc",
+    "transaction_id": "a917be59-f35a-478f-a5d9-19bf467972ad",
+    "amount": 2199,
+    "status": "paid",
+    "order": "abc123",
+    "completed": 1458748422,
+    "signature": "84f60f56af1bab4f4866e3a06ae28e37b71863809addabc7fc3d9b71ee9813ac"
+}
+```
+
+Þegar staðan á rukkun breytist, hvort sem kaupandi greiðir, hafnar eða rukkun rennur út, er POST-að á notify_url slóðina, sem skilgreind var þegar rukkunin var stofnuð, með upplýsingum um greiðsluna. Svarið er undirritað.
+
+### Skýring á svæðum
+
+Svæði | Tegund | Skýring
+----- | ------ | -------
+payment_id | Strengur | Númer rukkunar.
+transaction_id | Strengur | Færslunúmer ef kaupandi hefur greitt. Ef rukkunin er ógreidd, útrunnin eða var hafnað er ekkert númer sent.
+amount | Tala | Upphæð sem send var inn þegar rukkun var stofnuð.
+status | Strengur | Staðan á rukkuninni.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði.<br>**expired** = Rukkun rann út.
+order | Strengur | Pöntunarnúmer sem söluaðili sendi inn þegar rukkun var stofnuð.
+completed | Tala | Tímasetningin þegar rukkun lokaðist og staðan breyttist úr pending yfir í **paid**, **rejected** eða **expired**. Unix tímastimpill.
+signature | Strengur | Undirritun sem söluaðili getur borið saman við til að staðfesta að svarið sé réttmætt.
+
+## Undirritun
+
+> Dæmi um samsettan streng
+
+```
+a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199
+```
+
+> Dæmi
+
+```shell
+** Veldu forritunarmál efst á síðunni **
+```
+
+```csharp
+string key = "um2JjfnJbEUJnCpjKiV94jqp";
+string body = "a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199";
+byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+HMACSHA256 hasher = new HMACSHA256(keyBytes);
+byte[] bodyBytes = hasher.ComputeHash(Encoding.UTF8.GetBytes(body));
+string signature = BitConverter.ToString(bodyBytes).Replace("-", "");
+```
+
+```php
+<?php
+$key = 'um2JjfnJbEUJnCpjKiV94jqp';
+$body = utf8_encode('a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199');
+$signature = hash_hmac('sha256', $body, $key);
+?>
+```
+
+```ruby
+require 'openssl'
+
+key = 'um2JjfnJbEUJnCpjKiV94jqp'
+body = 'a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199'
+digest = OpenSSL::Digest.new('sha256')
+signature = OpenSSL::HMAC.hexdigest(digest, key, body)
+```
+
+> Dæmi um fullbúna undirritun
+
+```
+84f60f56af1bab4f4866e3a06ae28e37b71863809addabc7fc3d9b71ee9813ac
+```
+
+Undirritunin er strengur sem er settur saman úr eftirfarandi einingum og síðan hashaður með HMAC SHA256 þar sem aðgangskóðinn er lykillinn.
+
+`transaction_id&completed&amount`
