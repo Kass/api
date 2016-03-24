@@ -8,6 +8,7 @@ language_tabs:
   - ruby
 
 toc_footers:
+  - <a href='https://github.com/kass'>github.com/kass</a>
   - <a href='https://kass.is'>Kass - milli vina</a>
 
 includes:
