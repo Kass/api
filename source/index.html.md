@@ -45,7 +45,7 @@ curl https://api.kass.is/v1/payments \
 {
     "amount": 2199,
     "description": "Kass bolur",
-    "image_url": "...",
+    "image_url": "https://photos.kassapi.is/kass/kass-bolur.jpg",
     "order": "ABC123",
     "recipient": "7728440",
     "notify_url": "https://example.com/callbacks/kass"
@@ -116,7 +116,7 @@ curl https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc \
     "transaction_id": "a917be59-f35a-478f-a5d9-19bf467972ad",
     "amount": 2199,
     "description": "Kass bolur",
-    "image_url": "...",
+    "image_url": "https://photos.kassapi.is/kass/kass-bolur.jpg",
     "status": "paid",
     "order": "abc123",
     "created": 1458748385,
