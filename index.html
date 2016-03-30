@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;,&quot;php&quot;,&quot;ruby&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;,&quot;go&quot;,&quot;php&quot;,&quot;ruby&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -103,6 +103,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="go">go</a>
               <a href="#" data-language-name="php">php</a>
               <a href="#" data-language-name="ruby">ruby</a>
         </div>
@@ -474,6 +475,17 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <span class="kt">byte</span><span class="p">[]</span> <span class="n">bodyBytes</span> <span class="p">=</span> <span class="n">hasher</span><span class="p">.</span><span class="nf">ComputeHash</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">body</span><span class="p">));</span>
 <span class="kt">string</span> <span class="n">signature</span> <span class="p">=</span> <span class="n">BitConverter</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="n">bodyBytes</span><span class="p">).</span><span class="nf">Replace</span><span class="p">(</span><span class="s">"-"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
 </code></pre>
+<pre class="highlight go"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+    </span><span class="s">"crypto/hmac"</span><span class="x">
+    </span><span class="s">"crypto/sha256"</span><span class="x">
+    </span><span class="s">"encoding/hex"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">key</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"um2JjfnJbEUJnCpjKiV94jqp"</span><span class="p">)</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">body</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="s">"a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199"</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">h</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hmac</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">sha256</span><span class="o">.</span><span class="n">New</span><span class="p">,</span><span class="x"> </span><span class="n">key</span><span class="p">)</span><span class="x">
+</span><span class="n">h</span><span class="o">.</span><span class="n">Write</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="n">body</span><span class="p">))</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">signature</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hex</span><span class="o">.</span><span class="n">EncodeToString</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="no">nil</span><span class="p">))</span><span class="x">
+</span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$key</span> <span class="o">=</span> <span class="s1">'um2JjfnJbEUJnCpjKiV94jqp'</span><span class="p">;</span>
 <span class="nv">$body</span> <span class="o">=</span> <span class="nb">utf8_encode</span><span class="p">(</span><span class="s1">'a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199'</span><span class="p">);</span>
@@ -569,6 +581,7 @@ API skilar alltaf HTTP 200 OK. Þessir villukóðar eiga eingöngu við um villu
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="go">go</a>
                 <a href="#" data-language-name="php">php</a>
                 <a href="#" data-language-name="ruby">ruby</a>
           </div>
