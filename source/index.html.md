@@ -140,10 +140,41 @@ transaction_id | Strengur | Færslunúmer ef kaupandi hefur greitt. Ef rukkunin 
 amount | Tala | Upphæð sem send var inn þegar rukkun var stofnuð.
 description | Strengur | Skilaboð til kaupanda sem send voru inn þegar rukkun var stofnuð.
 image_url | Strengur | Slóð að mynd sem send var inn þegar rukkun var stofnuð.
-status | Strengur | Staðan á rukkuninni.<br>**pending** = Ógreidd.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði.<br>**expired** = Rukkun rann út.
+status | Strengur | Staðan á rukkuninni.<br>**pending** = Ógreidd.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði eða rukkun rann út.
 order | Strengur | Pöntunarnúmer sem söluaðili sendi inn þegar rukkun var stofnuð.
 created | Tala | Tímasetningin þegar rukkunin var stofnuð. Unix tímastimpill.
 updated | Tala | Tímasetningin þegar stöðu á rukkuninni var breytt. Ef staðan er óbreytt þá er þessi tími sami og created_at. Unix tímastimpill.
+expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.
+
+# Fella niður rukkun
+
+```shell
+curl -X DELETE https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc \
+    -u um2JjfnJbEUJnCpjKiV94jqp:
+```
+
+> Dæmi um JSON svargögn
+
+```json
+{
+    "id": "3e6975e8-77cb-48b7-7722-3dfe47677bbc",
+    "status": "rejected",
+    "expires": 1458748475
+}
+```
+
+Fellir niður rukkun samstundis þannig að notandi getur ekki lengur greitt.
+
+### HTTP
+
+`DELETE https://api.kass.is/v1/payments/[id]`
+
+### Skýring á svæðum
+
+Svæði | Tegund | Skýring
+----- | ------ | -------
+id | Strengur | Númer rukkunar.
+status | Strengur | Staðan á rukkuninni.<br>**rejected** = Kaupandi hafnaði eða rukkun rann út.
 expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.
 
 # Athuga stöðu á rukkun
@@ -174,7 +205,7 @@ Skilar stöðunni á rukkun, þ.e.a.s. hvort hún sé ógreidd, hafi verið grei
 Svæði | Tegund | Skýring
 ----- | ------ | -------
 id | Strengur | Númer rukkunar.
-status | Strengur | Staðan á rukkuninni.<br>**pending** = Ógreidd.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði.<br>**expired** = Rukkun rann út.
+status | Strengur | Staðan á rukkuninni.<br>**pending** = Ógreidd.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði eða rukkun rann út.
 expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.
 
 # Sjálfvirk tilkynning frá Kass (notification callback)
@@ -202,9 +233,9 @@ Svæði | Tegund | Skýring
 payment_id | Strengur | Númer rukkunar.
 transaction_id | Strengur | Færslunúmer ef kaupandi hefur greitt. Ef rukkunin er ógreidd, útrunnin eða var hafnað er ekkert númer sent.
 amount | Tala | Upphæð sem send var inn þegar rukkun var stofnuð.
-status | Strengur | Staðan á rukkuninni.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði.<br>**expired** = Rukkun rann út.
+status | Strengur | Staðan á rukkuninni.<br>**paid** = Kaupandi greiddi.<br>**rejected** = Kaupandi hafnaði eða rukkun rann út.
 order | Strengur | Pöntunarnúmer sem söluaðili sendi inn þegar rukkun var stofnuð.
-completed | Tala | Tímasetningin þegar rukkun lokaðist og staðan breyttist úr pending yfir í **paid**, **rejected** eða **expired**. Unix tímastimpill.
+completed | Tala | Tímasetningin þegar rukkun lokaðist og staðan breyttist úr pending yfir í **paid** eða **rejected**. Unix tímastimpill.
 signature | Strengur | Undirritun sem söluaðili getur borið saman við til að staðfesta að svarið sé réttmætt.
 
 ## Undirritun
