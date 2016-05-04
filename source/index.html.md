@@ -176,7 +176,7 @@ Svæði | Tegund | Skýring
 ----- | ------ | -------
 id | Strengur | Númer rukkunar.
 status | Strengur | Staðan á rukkuninni.<br>**rejected** = Kaupandi hafnaði eða rukkun rann út.
-expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.
+expires | Tala | Tímasetningin þegar rukkunin var felld niður. Unix tímastimpill.
 
 # Athuga stöðu á rukkun
 

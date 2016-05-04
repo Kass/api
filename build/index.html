@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;,&quot;php&quot;,&quot;ruby&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;,&quot;go&quot;,&quot;php&quot;,&quot;ruby&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -103,6 +103,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="go">go</a>
               <a href="#" data-language-name="php">php</a>
               <a href="#" data-language-name="ruby">ruby</a>
         </div>
@@ -319,7 +320,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <tr>
 <td>status</td>
 <td>Strengur</td>
-<td>Staðan á rukkuninni.<br><strong>pending</strong> = Ógreidd.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði.<br><strong>expired</strong> = Rukkun rann út.</td>
+<td>Staðan á rukkuninni.<br><strong>pending</strong> = Ógreidd.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
 </tr>
 <tr>
 <td>order</td>
@@ -335,6 +336,53 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <td>updated</td>
 <td>Tala</td>
 <td>Tímasetningin þegar stöðu á rukkuninni var breytt. Ef staðan er óbreytt þá er þessi tími sami og created_at. Unix tímastimpill.</td>
+</tr>
+<tr>
+<td>expires</td>
+<td>Tala</td>
+<td>Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.</td>
+</tr>
+</tbody></table>
+
+<h1 id="fella-ni-ur-rukkun">Fella niður rukkun</h1>
+<pre class="highlight shell"><code>curl -X DELETE https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc <span class="se">\</span>
+    -u um2JjfnJbEUJnCpjKiV94jqp:
+</code></pre>
+
+<blockquote>
+<p>Dæmi um JSON svargögn</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e6975e8-77cb-48b7-7722-3dfe47677bbc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rejected"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expires"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748475</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Fellir niður rukkun samstundis þannig að notandi getur ekki lengur greitt.</p>
+
+<h3 id="http">HTTP</h3>
+
+<p><code class="prettyprint">DELETE https://api.kass.is/v1/payments/[id]</code></p>
+
+<h3 id="sk-ring-sv-um">Skýring á svæðum</h3>
+
+<table><thead>
+<tr>
+<th>Svæði</th>
+<th>Tegund</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Strengur</td>
+<td>Númer rukkunar.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Strengur</td>
+<td>Staðan á rukkuninni.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
 </tr>
 <tr>
 <td>expires</td>
@@ -381,7 +429,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <tr>
 <td>status</td>
 <td>Strengur</td>
-<td>Staðan á rukkuninni.<br><strong>pending</strong> = Ógreidd.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði.<br><strong>expired</strong> = Rukkun rann út.</td>
+<td>Staðan á rukkuninni.<br><strong>pending</strong> = Ógreidd.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
 </tr>
 <tr>
 <td>expires</td>
@@ -435,7 +483,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <tr>
 <td>status</td>
 <td>Strengur</td>
-<td>Staðan á rukkuninni.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði.<br><strong>expired</strong> = Rukkun rann út.</td>
+<td>Staðan á rukkuninni.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
 </tr>
 <tr>
 <td>order</td>
@@ -445,7 +493,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <tr>
 <td>completed</td>
 <td>Tala</td>
-<td>Tímasetningin þegar rukkun lokaðist og staðan breyttist úr pending yfir í <strong>paid</strong>, <strong>rejected</strong> eða <strong>expired</strong>. Unix tímastimpill.</td>
+<td>Tímasetningin þegar rukkun lokaðist og staðan breyttist úr pending yfir í <strong>paid</strong> eða <strong>rejected</strong>. Unix tímastimpill.</td>
 </tr>
 <tr>
 <td>signature</td>
@@ -474,6 +522,17 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <span class="kt">byte</span><span class="p">[]</span> <span class="n">bodyBytes</span> <span class="p">=</span> <span class="n">hasher</span><span class="p">.</span><span class="nf">ComputeHash</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">body</span><span class="p">));</span>
 <span class="kt">string</span> <span class="n">signature</span> <span class="p">=</span> <span class="n">BitConverter</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="n">bodyBytes</span><span class="p">).</span><span class="nf">Replace</span><span class="p">(</span><span class="s">"-"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
 </code></pre>
+<pre class="highlight go"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+    </span><span class="s">"crypto/hmac"</span><span class="x">
+    </span><span class="s">"crypto/sha256"</span><span class="x">
+    </span><span class="s">"encoding/hex"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">key</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"um2JjfnJbEUJnCpjKiV94jqp"</span><span class="p">)</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">body</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="s">"a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199"</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">h</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hmac</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">sha256</span><span class="o">.</span><span class="n">New</span><span class="p">,</span><span class="x"> </span><span class="n">key</span><span class="p">)</span><span class="x">
+</span><span class="n">h</span><span class="o">.</span><span class="n">Write</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="n">body</span><span class="p">))</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">signature</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hex</span><span class="o">.</span><span class="n">EncodeToString</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="no">nil</span><span class="p">))</span><span class="x">
+</span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$key</span> <span class="o">=</span> <span class="s1">'um2JjfnJbEUJnCpjKiV94jqp'</span><span class="p">;</span>
 <span class="nv">$body</span> <span class="o">=</span> <span class="nb">utf8_encode</span><span class="p">(</span><span class="s1">'a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199'</span><span class="p">);</span>
@@ -569,6 +628,7 @@ API skilar alltaf HTTP 200 OK. Þessir villukóðar eiga eingöngu við um villu
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="go">go</a>
                 <a href="#" data-language-name="php">php</a>
                 <a href="#" data-language-name="ruby">ruby</a>
           </div>
