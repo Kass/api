@@ -4,6 +4,7 @@ title: Kass API v1
 language_tabs:
   - shell
   - csharp
+  - go
   - php
   - ruby
 
@@ -259,6 +260,19 @@ byte[] keyBytes = Encoding.UTF8.GetBytes(key);
 HMACSHA256 hasher = new HMACSHA256(keyBytes);
 byte[] bodyBytes = hasher.ComputeHash(Encoding.UTF8.GetBytes(body));
 string signature = BitConverter.ToString(bodyBytes).Replace("-", "");
+```
+
+```go
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+)
+var key = []byte("um2JjfnJbEUJnCpjKiV94jqp")
+var body = "a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199"
+var h = hmac.New(sha256.New, key)
+h.Write([]byte(body))
+var signature = hex.EncodeToString(h.Sum(nil))
 ```
 
 ```php
