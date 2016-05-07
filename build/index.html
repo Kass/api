@@ -387,7 +387,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <tr>
 <td>expires</td>
 <td>Tala</td>
-<td>Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.</td>
+<td>Tímasetningin þegar rukkunin var felld niður. Unix tímastimpill.</td>
 </tr>
 </tbody></table>
 
@@ -507,7 +507,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <blockquote>
 <p>Dæmi um samsettan streng</p>
 </blockquote>
-<pre class="highlight plaintext"><code>a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199
+<pre class="highlight plaintext"><code>3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422
 </code></pre>
 
 <blockquote>
@@ -516,7 +516,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <pre class="highlight shell"><code><span class="k">**</span> Veldu forritunarmál efst á síðunni <span class="k">**</span>
 </code></pre>
 <pre class="highlight csharp"><code><span class="kt">string</span> <span class="n">key</span> <span class="p">=</span> <span class="s">"um2JjfnJbEUJnCpjKiV94jqp"</span><span class="p">;</span>
-<span class="kt">string</span> <span class="n">body</span> <span class="p">=</span> <span class="s">"a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199"</span><span class="p">;</span>
+<span class="kt">string</span> <span class="n">body</span> <span class="p">=</span> <span class="s">"3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422"</span><span class="p">;</span>
 <span class="kt">byte</span><span class="p">[]</span> <span class="n">keyBytes</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
 <span class="n">HMACSHA256</span> <span class="n">hasher</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">HMACSHA256</span><span class="p">(</span><span class="n">keyBytes</span><span class="p">);</span>
 <span class="kt">byte</span><span class="p">[]</span> <span class="n">bodyBytes</span> <span class="p">=</span> <span class="n">hasher</span><span class="p">.</span><span class="nf">ComputeHash</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">body</span><span class="p">));</span>
@@ -528,21 +528,21 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
     </span><span class="s">"encoding/hex"</span><span class="x">
 </span><span class="p">)</span><span class="x">
 </span><span class="k">var</span><span class="x"> </span><span class="n">key</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"um2JjfnJbEUJnCpjKiV94jqp"</span><span class="p">)</span><span class="x">
-</span><span class="k">var</span><span class="x"> </span><span class="n">body</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="s">"a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199"</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">body</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="s">"3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422"</span><span class="x">
 </span><span class="k">var</span><span class="x"> </span><span class="n">h</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hmac</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">sha256</span><span class="o">.</span><span class="n">New</span><span class="p">,</span><span class="x"> </span><span class="n">key</span><span class="p">)</span><span class="x">
 </span><span class="n">h</span><span class="o">.</span><span class="n">Write</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="n">body</span><span class="p">))</span><span class="x">
 </span><span class="k">var</span><span class="x"> </span><span class="n">signature</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hex</span><span class="o">.</span><span class="n">EncodeToString</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="no">nil</span><span class="p">))</span><span class="x">
 </span></code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$key</span> <span class="o">=</span> <span class="s1">'um2JjfnJbEUJnCpjKiV94jqp'</span><span class="p">;</span>
-<span class="nv">$body</span> <span class="o">=</span> <span class="nb">utf8_encode</span><span class="p">(</span><span class="s1">'a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199'</span><span class="p">);</span>
+<span class="nv">$body</span> <span class="o">=</span> <span class="nb">utf8_encode</span><span class="p">(</span><span class="s1">'3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422'</span><span class="p">);</span>
 <span class="nv">$signature</span> <span class="o">=</span> <span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nv">$body</span><span class="p">,</span> <span class="nv">$key</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 </code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'openssl'</span>
 
 <span class="n">key</span> <span class="o">=</span> <span class="s1">'um2JjfnJbEUJnCpjKiV94jqp'</span>
-<span class="n">body</span> <span class="o">=</span> <span class="s1">'a917be59-f35a-478f-a5d9-19bf467972ad&amp;1458748422&amp;2199'</span>
+<span class="n">body</span> <span class="o">=</span> <span class="s1">'3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422'</span>
 <span class="n">digest</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">)</span>
 <span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">digest</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
 </code></pre>
@@ -555,7 +555,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 
 <p>Undirritunin er strengur sem er settur saman úr eftirfarandi einingum og síðan hashaður með HMAC SHA256 þar sem aðgangskóðinn er lykillinn.</p>
 
-<p><code class="prettyprint">transaction_id&amp;completed&amp;amount</code></p>
+<p><code class="prettyprint">payment_id&amp;transaction_id&amp;order&amp;amount&amp;status&amp;completed</code></p>
 
           <h1 id="m-gulegir-villuk-ar">Mögulegir villukóðar</h1>
 
