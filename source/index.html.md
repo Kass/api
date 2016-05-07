@@ -244,7 +244,7 @@ signature | Strengur | Undirritun sem söluaðili getur borið saman við til a�
 > Dæmi um samsettan streng
 
 ```
-a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199
+3e6975e8-77cb-48b7-7722-3dfe47677bbc&a917be59-f35a-478f-a5d9-19bf467972ad&abc123&2199&paid&1458748422
 ```
 
 > Dæmi
@@ -255,7 +255,7 @@ a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199
 
 ```csharp
 string key = "um2JjfnJbEUJnCpjKiV94jqp";
-string body = "a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199";
+string body = "3e6975e8-77cb-48b7-7722-3dfe47677bbc&a917be59-f35a-478f-a5d9-19bf467972ad&abc123&2199&paid&1458748422";
 byte[] keyBytes = Encoding.UTF8.GetBytes(key);
 HMACSHA256 hasher = new HMACSHA256(keyBytes);
 byte[] bodyBytes = hasher.ComputeHash(Encoding.UTF8.GetBytes(body));
@@ -269,7 +269,7 @@ import (
 	"encoding/hex"
 )
 var key = []byte("um2JjfnJbEUJnCpjKiV94jqp")
-var body = "a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199"
+var body = "3e6975e8-77cb-48b7-7722-3dfe47677bbc&a917be59-f35a-478f-a5d9-19bf467972ad&abc123&2199&paid&1458748422"
 var h = hmac.New(sha256.New, key)
 h.Write([]byte(body))
 var signature = hex.EncodeToString(h.Sum(nil))
@@ -278,7 +278,7 @@ var signature = hex.EncodeToString(h.Sum(nil))
 ```php
 <?php
 $key = 'um2JjfnJbEUJnCpjKiV94jqp';
-$body = utf8_encode('a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199');
+$body = utf8_encode('3e6975e8-77cb-48b7-7722-3dfe47677bbc&a917be59-f35a-478f-a5d9-19bf467972ad&abc123&2199&paid&1458748422');
 $signature = hash_hmac('sha256', $body, $key);
 ?>
 ```
@@ -287,7 +287,7 @@ $signature = hash_hmac('sha256', $body, $key);
 require 'openssl'
 
 key = 'um2JjfnJbEUJnCpjKiV94jqp'
-body = 'a917be59-f35a-478f-a5d9-19bf467972ad&1458748422&2199'
+body = '3e6975e8-77cb-48b7-7722-3dfe47677bbc&a917be59-f35a-478f-a5d9-19bf467972ad&abc123&2199&paid&1458748422'
 digest = OpenSSL::Digest.new('sha256')
 signature = OpenSSL::HMAC.hexdigest(digest, key, body)
 ```
@@ -300,4 +300,4 @@ signature = OpenSSL::HMAC.hexdigest(digest, key, body)
 
 Undirritunin er strengur sem er settur saman úr eftirfarandi einingum og síðan hashaður með HMAC SHA256 þar sem aðgangskóðinn er lykillinn.
 
-`transaction_id&completed&amount`
+`payment_id&transaction_id&order&amount&status&completed`
