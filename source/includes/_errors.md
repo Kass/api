@@ -14,6 +14,6 @@ Villukóði | Lykill | Þýddur texti | Ástæða
 200 | recipient_not_found | Viðtakandi fannst ekki | Enginn viðtakandi fannst með símanúmerið eða notandanafnið sem sent var inn.
 201 | merchant_cannot_be_recipient | Söluaðili getur ekki verið viðtakandi | Ekki er hægt að senda rukkun á söluaðila.
 300 | payment_not_found | Greiðsla fannst ekki | Greiðsla með uppgefnu ID fannst ekki.
-301 | payment_exceeds_limits | Rukkunin fer yfir leyfða heimild.
+301 | payment_exceeds_limits | Ekki heimild | Rukkunin fer yfir leyfða heimild.
 400 | invalid_data | Innsend gögn eru ekki á réttu formi | Annað hvort vantar upplýsingar í innsend JSON gögn eða hluti þeirra er á röngu formi.
 500 | system_error | Kerfisvilla - prófaðu aftur | Eitthvað leiðinlegt kom upp á í Kass kerfinu.
