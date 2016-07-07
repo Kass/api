@@ -49,6 +49,7 @@ curl https://api.kass.is/v1/payments \
     "image_url": "https://photos.kassapi.is/kass/kass-bolur.jpg",
     "order": "ABC123",
     "recipient": "7728440",
+    "terminal": 1,
     "notify_url": "https://example.com/callbacks/kass"
 }
 ```
@@ -91,6 +92,7 @@ description | Strengur | Skilaboð til kaupanda. Valfrjálst svæði.
 image_url | Strengur | Slóð að mynd sem geymd er á vef söluaðila. Kass appið sækir myndina út frá slóðinni þannig að kaupandinn sjái hana. Valfrjálst svæði.
 order | Strengur | Pöntunarnúmer sem söluaðili getur sent með. Númerið er sent til baka til kerfis söluaðila eftir að kaupandi greiðir (notify_url). Kaupandi sér ekki númerið. Valfrjálst svæði.
 recipient | Strengur | Notandanafn eða símanúmer viðtakanda. Styður aðeins einn viðtakanda í einu. Símanúmer má innihalda landkóða (+354) en þarf þess ekki.
+terminal | Tala | Auðkenni útstöðvar eða sölustaðar. Valfrjálst svæði.
 notify_url | Strengur | Slóð hjá söluaðila sem Kass kerfið kallar í eftir að kaupandi hefur greitt. Sjá nánar kaflann Sjálfvirk tilkynning frá Kass.
 
 ### Skýring á svæðum í svargögnum
@@ -221,7 +223,7 @@ expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur 
     "status": "paid",
     "order": "abc123",
     "completed": 1458748422,
-    "signature": "84f60f56af1bab4f4866e3a06ae28e37b71863809addabc7fc3d9b71ee9813ac"
+    "signature": "8022cb71924dba2e24f849fdc83596e80a3966465f6b3f1702326afa31229b11"
 }
 ```
 
@@ -295,7 +297,7 @@ signature = OpenSSL::HMAC.hexdigest(digest, key, body)
 > Dæmi um fullbúna undirritun
 
 ```
-84f60f56af1bab4f4866e3a06ae28e37b71863809addabc7fc3d9b71ee9813ac
+8022cb71924dba2e24f849fdc83596e80a3966465f6b3f1702326afa31229b11
 ```
 
 Undirritunin er strengur sem er settur saman úr eftirfarandi einingum og síðan hashaður með HMAC SHA256 þar sem aðgangskóðinn er lykillinn.
