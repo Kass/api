@@ -150,6 +150,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
     </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://photos.kassapi.is/kass/kass-bolur.jpg"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7728440"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"terminal"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"notify_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/callbacks/kass"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -216,6 +217,11 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <td>recipient</td>
 <td>Strengur</td>
 <td>Notandanafn eða símanúmer viðtakanda. Styður aðeins einn viðtakanda í einu. Símanúmer má innihalda landkóða (+354) en þarf þess ekki.</td>
+</tr>
+<tr>
+<td>terminal</td>
+<td>Tala</td>
+<td>Auðkenni útstöðvar eða sölustaðar. Valfrjálst svæði.</td>
 </tr>
 <tr>
 <td>notify_url</td>
@@ -450,7 +456,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paid"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"completed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748422</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"84f60f56af1bab4f4866e3a06ae28e37b71863809addabc7fc3d9b71ee9813ac"</span><span class="w">
+    </span><span class="nt">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8022cb71924dba2e24f849fdc83596e80a3966465f6b3f1702326afa31229b11"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -550,7 +556,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <blockquote>
 <p>Dæmi um fullbúna undirritun</p>
 </blockquote>
-<pre class="highlight plaintext"><code>84f60f56af1bab4f4866e3a06ae28e37b71863809addabc7fc3d9b71ee9813ac
+<pre class="highlight plaintext"><code>8022cb71924dba2e24f849fdc83596e80a3966465f6b3f1702326afa31229b11
 </code></pre>
 
 <p>Undirritunin er strengur sem er settur saman úr eftirfarandi einingum og síðan hashaður með HMAC SHA256 þar sem aðgangskóðinn er lykillinn.</p>
