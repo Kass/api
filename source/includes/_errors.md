@@ -1,7 +1,7 @@
 # Mögulegir villukóðar
 
 <aside class="notice">
-API skilar alltaf HTTP 200 OK. Þessir villukóðar eiga eingöngu við um villukóða í JSON svargögnum.
+Undir eðlilegum kringumstæðum skilar API alltaf HTTP 200 OK. Þessir villukóðar eiga eingöngu við um villukóða í JSON svargögnum.
 </aside>
 
 Kass API styðst við eftirfarandi villukóða:
