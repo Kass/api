@@ -231,7 +231,7 @@ expires | Tala | Tímasetningin þegar rukkunin rennur út og viðtakandi getur 
 
 Til að koma í veg fyrir misnotkun er mælt með því að staðfesta undirritunina (signature strenginn) og einnig er gott að passa að þú meðhöndlir ekki sama payment_id oftar en einu sinni.
 
-**Mikilvægt:** Netþjónninn þinn verður að svara með HTTP 200 OK og strengnum OK í body. Að öðru leyti telst svarið ekki gilt og Kass mun því reyna nokkrum sinnum aftur að senda gögnin á netþjóninn þinn.
+**Mikilvægt:** Netþjónninn þinn verður að svara með HTTP 200 OK. Að öðru leyti telst svarið ekki gilt og Kass mun því reyna nokkrum sinnum aftur að senda gögnin á netþjóninn þinn.
 
 ### Skýring á svæðum
 
