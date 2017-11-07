@@ -639,6 +639,38 @@ Undir eðlilegum kringumstæðum skilar API alltaf HTTP 200 OK. Þessir villukó
 </tr>
 </tbody></table>
 
+          <h1 id="sandkassi-pr-funarg-gn">Sandkassi (prófunargögn)</h1>
+<pre class="highlight shell"><code>curl https://api.testing.kass.is/v1/payments <span class="se">\</span>
+    -u kass_test_auth_token: <span class="se">\</span>
+    -d @payment_request.json
+</code></pre>
+
+<p>Hægt er að senda rukkanir á prófunarsvæði með því að nota aðgangskóðann <code class="prettyprint">kass_test_auth_token</code>. Fyrir neðan má finna lista af símanúmerum sem senda má rukkun á og skýringu á viðbrögðum kerfisins.</p>
+
+<h3 id="http">HTTP</h3>
+
+<p><code class="prettyprint">POST https://api.testing.kass.is/v1/payments</code></p>
+
+<table><thead>
+<tr>
+<th>Símanúmer</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100 1000</td>
+<td>Rukkun send á þetta númer rennur út eftir 90 sekúndur.</td>
+</tr>
+<tr>
+<td>100 1001</td>
+<td>Rukkun send á þetta númer verður sjálfkrafa merkt <strong>greidd</strong>.</td>
+</tr>
+<tr>
+<td>100 1002</td>
+<td>Rukkun send á þetta númer verður sjálfkrafa merkt <strong>hafnað</strong>.</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
