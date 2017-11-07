@@ -1,0 +1,811 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Kass API v1</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;,&quot;go&quot;,&quot;php&quot;,&quot;ruby&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="go">go</a>
+              <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#inngangur" class="toc-h1 toc-link" data-title="Inngangur">Inngangur</a>
+          </li>
+          <li>
+            <a href="#audkenning" class="toc-h1 toc-link" data-title="Auðkenning">Auðkenning</a>
+          </li>
+          <li>
+            <a href="#stofna-rukkun" class="toc-h1 toc-link" data-title="Stofna rukkun">Stofna rukkun</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http" class="toc-h2 toc-link" data-title="HTTP">HTTP</a>
+                  </li>
+                  <li>
+                    <a href="#skyring-a-innsendum-svaedum" class="toc-h2 toc-link" data-title="Skýring á innsendum svæðum">Skýring á innsendum svæðum</a>
+                  </li>
+                  <li>
+                    <a href="#skyring-a-svaedum-i-svargognum" class="toc-h2 toc-link" data-title="Skýring á svæðum í svargögnum">Skýring á svæðum í svargögnum</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#saekja-upplysingar-um-rukkun" class="toc-h1 toc-link" data-title="Sækja upplýsingar um rukkun">Sækja upplýsingar um rukkun</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-2" class="toc-h2 toc-link" data-title="HTTP">HTTP</a>
+                  </li>
+                  <li>
+                    <a href="#skyring-a-svaedum" class="toc-h2 toc-link" data-title="Skýring á svæðum">Skýring á svæðum</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#fella-nidur-rukkun" class="toc-h1 toc-link" data-title="Fella niður rukkun">Fella niður rukkun</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-3" class="toc-h2 toc-link" data-title="HTTP">HTTP</a>
+                  </li>
+                  <li>
+                    <a href="#skyring-a-svaedum-2" class="toc-h2 toc-link" data-title="Skýring á svæðum">Skýring á svæðum</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#athuga-stodu-a-rukkun" class="toc-h1 toc-link" data-title="Athuga stöðu á rukkun">Athuga stöðu á rukkun</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-4" class="toc-h2 toc-link" data-title="HTTP">HTTP</a>
+                  </li>
+                  <li>
+                    <a href="#skyring-a-svaedum-3" class="toc-h2 toc-link" data-title="Skýring á svæðum">Skýring á svæðum</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#sjalfvirk-tilkynning-fra-kass-notification-callback" class="toc-h1 toc-link" data-title="Sjálfvirk tilkynning frá Kass (notification callback)">Sjálfvirk tilkynning frá Kass (notification callback)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#skyring-a-svaedum-4" class="toc-h2 toc-link" data-title="Skýring á svæðum">Skýring á svæðum</a>
+                  </li>
+                  <li>
+                    <a href="#undirritun" class="toc-h2 toc-link" data-title="Undirritun">Undirritun</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#mogulegir-villukodar" class="toc-h1 toc-link" data-title="Mögulegir villukóðar">Mögulegir villukóðar</a>
+          </li>
+          <li>
+            <a href="#sandkassi-profunargogn" class="toc-h1 toc-link" data-title="Sandkassi (prófunargögn)">Sandkassi (prófunargögn)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http" class="toc-h2 toc-link" data-title="HTTP">HTTP</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/kass'>github.com/kass</a></li>
+            <li><a href='https://kass.is'>Kass - milli vina</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='inngangur'>Inngangur</h1>
+<p>Velkomin í skjölun á Kass API v1.</p>
+<h1 id='audkenning'>Auðkenning</h1>
+<p>Hver aðgerð í Kass API notar HTTP Basic Auth auðkenningu (sjá curl -u í dæmum). Aðgangskóði söluaðila er sendur inn sem notandanafn á meðan svæðið fyrir lykilorð er tómt.</p>
+
+<p><code>-u um2JjfnJbEUJnCpjKiV94jqp:</code></p>
+
+<aside class="notice">
+Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangskóða.
+</aside>
+<h1 id='stofna-rukkun'>Stofna rukkun</h1><pre class="highlight shell tab-shell"><code>curl https://api.kass.is/v1/payments <span class="se">\</span>
+    -u um2JjfnJbEUJnCpjKiV94jqp: <span class="se">\</span>
+    -d @payment_request.json
+</code></pre>
+<blockquote>
+<p>Dæmi um innsend JSON gögn (payment_request.json)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2199</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kass bolur"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://photos.kassapi.is/kass/kass-bolur.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7728440"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"terminal"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/callbacks/kass"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Dæmi um JSON svargögn ef aðgerð tókst</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e6975e8-77cb-48b7-7722-3dfe47677bbc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748385</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Dæmi um JSON svargögn ef upp kom villa</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recipient_not_found"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Viðtakandi fannst ekki"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Þessi aðgerð stofnar rukkun og sendir hana samstundis á viðtakanda. Viðtakandinn hefur þá 90 sekúndur til að bregðast við rukkuninni, hvort sem er að greiða eða hafna. Eftir þann tíma rennur rukkunin út og viðtakandi getur ekki lengur greitt.</p>
+<h3 id='http'>HTTP</h3>
+<p><code>POST https://api.kass.is/v1/payments</code></p>
+<h3 id='skyring-a-innsendum-svaedum'>Skýring á innsendum svæðum</h3>
+<table><thead>
+<tr>
+<th>Svæði</th>
+<th>Tegund</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>Tala</td>
+<td>Heildarupphæð greiðslu til rukkunar, skráð án aukastafa.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Strengur</td>
+<td>Skilaboð til kaupanda. Valfrjálst svæði.</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td>Strengur</td>
+<td>Slóð að mynd sem geymd er á vef söluaðila. Kass appið sækir myndina út frá slóðinni þannig að kaupandinn sjái hana. Valfrjálst svæði.</td>
+</tr>
+<tr>
+<td>order</td>
+<td>Strengur</td>
+<td>Pöntunarnúmer sem söluaðili getur sent með. Númerið er sent til baka til kerfis söluaðila eftir að kaupandi greiðir (notify_url). Kaupandi sér ekki númerið. Valfrjálst svæði.</td>
+</tr>
+<tr>
+<td>recipient</td>
+<td>Strengur</td>
+<td>Notandanafn eða símanúmer viðtakanda. Styður aðeins einn viðtakanda í einu. Símanúmer má innihalda landkóða (+354) en þarf þess ekki.</td>
+</tr>
+<tr>
+<td>terminal</td>
+<td>Tala</td>
+<td>Auðkenni útstöðvar eða sölustaðar. Valfrjálst svæði.</td>
+</tr>
+<tr>
+<td>notify_url</td>
+<td>Strengur</td>
+<td>Slóð hjá söluaðila sem Kass kerfið kallar í eftir að kaupandi hefur greitt. Sjá nánar kaflann Sjálfvirk tilkynning frá Kass.</td>
+</tr>
+</tbody></table>
+<h3 id='skyring-a-svaedum-i-svargognum'>Skýring á svæðum í svargögnum</h3>
+<table><thead>
+<tr>
+<th>Svæði</th>
+<th>Tegund</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>Sanngildi</td>
+<td>Skilar true ef öll gögn eru rétt og rukkun hefur verið send á viðtakandann.</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Strengur</td>
+<td>Númer rukkunar sem er notað til að athuga stöðu.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>Tala</td>
+<td>Tímasetningin þegar rukkunin var stofnuð. Unix tímastimpill.</td>
+</tr>
+<tr>
+<td>error</td>
+<td>JSON</td>
+<td>Upplýsingar um villu ef success gildið er false. Sjá nánar um villukóða í kaflanum Mögulegir villukóðar.</td>
+</tr>
+</tbody></table>
+<h1 id='saekja-upplysingar-um-rukkun'>Sækja upplýsingar um rukkun</h1><pre class="highlight shell tab-shell"><code>curl https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc <span class="se">\</span>
+    -u um2JjfnJbEUJnCpjKiV94jqp:
+</code></pre>
+<blockquote>
+<p>Dæmi um JSON svargögn</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e6975e8-77cb-48b7-7722-3dfe47677bbc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a917be59-f35a-478f-a5d9-19bf467972ad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2199</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kass bolur"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://photos.kassapi.is/kass/kass-bolur.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paid"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748385</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748422</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748475</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Skilar upplýsingum um rukkun. Ef eingöngu er verið að athuga stöðu rukkunar, sjá kaflann Athuga stöðu á rukkun.</p>
+<h3 id='http-2'>HTTP</h3>
+<p><code>GET https://api.kass.is/v1/payments/[id]</code></p>
+<h3 id='skyring-a-svaedum'>Skýring á svæðum</h3>
+<table><thead>
+<tr>
+<th>Svæði</th>
+<th>Tegund</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Strengur</td>
+<td>Númer rukkunar.</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td>Strengur</td>
+<td>Færslunúmer ef kaupandi hefur greitt. Ef rukkunin er ógreidd, útrunnin eða var hafnað er ekkert númer sent.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Tala</td>
+<td>Upphæð sem send var inn þegar rukkun var stofnuð.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Strengur</td>
+<td>Skilaboð til kaupanda sem send voru inn þegar rukkun var stofnuð.</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td>Strengur</td>
+<td>Slóð að mynd sem send var inn þegar rukkun var stofnuð.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Strengur</td>
+<td>Staðan á rukkuninni.<br><strong>pending</strong> = Ógreidd.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
+</tr>
+<tr>
+<td>order</td>
+<td>Strengur</td>
+<td>Pöntunarnúmer sem söluaðili sendi inn þegar rukkun var stofnuð.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>Tala</td>
+<td>Tímasetningin þegar rukkunin var stofnuð. Unix tímastimpill.</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>Tala</td>
+<td>Tímasetningin þegar stöðu á rukkuninni var breytt. Ef staðan er óbreytt þá er þessi tími sami og created_at. Unix tímastimpill.</td>
+</tr>
+<tr>
+<td>expires</td>
+<td>Tala</td>
+<td>Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.</td>
+</tr>
+</tbody></table>
+<h1 id='fella-nidur-rukkun'>Fella niður rukkun</h1><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc <span class="se">\</span>
+    -u um2JjfnJbEUJnCpjKiV94jqp:
+</code></pre>
+<blockquote>
+<p>Dæmi um JSON svargögn</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e6975e8-77cb-48b7-7722-3dfe47677bbc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rejected"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748475</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Fellir niður rukkun samstundis þannig að notandi getur ekki lengur greitt.</p>
+<h3 id='http-3'>HTTP</h3>
+<p><code>DELETE https://api.kass.is/v1/payments/[id]</code></p>
+<h3 id='skyring-a-svaedum-2'>Skýring á svæðum</h3>
+<table><thead>
+<tr>
+<th>Svæði</th>
+<th>Tegund</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Strengur</td>
+<td>Númer rukkunar.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Strengur</td>
+<td>Staðan á rukkuninni.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
+</tr>
+<tr>
+<td>expires</td>
+<td>Tala</td>
+<td>Tímasetningin þegar rukkunin var felld niður. Unix tímastimpill.</td>
+</tr>
+</tbody></table>
+<h1 id='athuga-stodu-a-rukkun'>Athuga stöðu á rukkun</h1><pre class="highlight shell tab-shell"><code>curl https://api.kass.is/v1/payments/3e6975e8-77cb-48b7-7722-3dfe47677bbc/status <span class="se">\</span>
+    -u um2JjfnJbEUJnCpjKiV94jqp:
+</code></pre>
+<blockquote>
+<p>Dæmi um JSON svargögn</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e6975e8-77cb-48b7-7722-3dfe47677bbc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748475</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Skilar stöðunni á rukkun, þ.e.a.s. hvort hún sé ógreidd, hafi verið greidd, hafi verið hafnað eða sé útrunnin.</p>
+<h3 id='http-4'>HTTP</h3>
+<p><code>GET https://api.kass.is/v1/payments/[id]/status</code></p>
+<h3 id='skyring-a-svaedum-3'>Skýring á svæðum</h3>
+<table><thead>
+<tr>
+<th>Svæði</th>
+<th>Tegund</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Strengur</td>
+<td>Númer rukkunar.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Strengur</td>
+<td>Staðan á rukkuninni.<br><strong>pending</strong> = Ógreidd.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
+</tr>
+<tr>
+<td>expires</td>
+<td>Tala</td>
+<td>Tímasetningin þegar rukkunin rennur út og viðtakandi getur ekki lengur greitt. Unix tímastimpill.</td>
+</tr>
+</tbody></table>
+<h1 id='sjalfvirk-tilkynning-fra-kass-notification-callback'>Sjálfvirk tilkynning frá Kass (notification callback)</h1>
+<blockquote>
+<p>Dæmi um JSON gögn</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"payment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e6975e8-77cb-48b7-7722-3dfe47677bbc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a917be59-f35a-478f-a5d9-19bf467972ad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2199</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paid"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458748422</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8022cb71924dba2e24f849fdc83596e80a3966465f6b3f1702326afa31229b11"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Þegar staðan á rukkun breytist, hvort sem kaupandi greiðir, hafnar eða rukkun rennur út, er POST-að á notify_url slóðina, sem skilgreind var þegar rukkunin var stofnuð, með upplýsingum um greiðsluna. Svarið er undirritað.</p>
+
+<p>Til að koma í veg fyrir misnotkun er mælt með því að staðfesta undirritunina (signature strenginn) og einnig er gott að passa að þú meðhöndlir ekki sama payment_id oftar en einu sinni.</p>
+
+<p><strong>Mikilvægt:</strong> Netþjónninn þinn verður að svara með HTTP 200 OK. Að öðru leyti telst svarið ekki gilt og Kass mun því reyna nokkrum sinnum aftur að senda gögnin á netþjóninn þinn.</p>
+<h3 id='skyring-a-svaedum-4'>Skýring á svæðum</h3>
+<table><thead>
+<tr>
+<th>Svæði</th>
+<th>Tegund</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>payment_id</td>
+<td>Strengur</td>
+<td>Númer rukkunar.</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td>Strengur</td>
+<td>Færslunúmer ef kaupandi hefur greitt. Ef rukkunin er ógreidd, útrunnin eða var hafnað er ekkert númer sent.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Tala</td>
+<td>Upphæð sem send var inn þegar rukkun var stofnuð.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Strengur</td>
+<td>Staðan á rukkuninni.<br><strong>paid</strong> = Kaupandi greiddi.<br><strong>rejected</strong> = Kaupandi hafnaði eða rukkun rann út.</td>
+</tr>
+<tr>
+<td>order</td>
+<td>Strengur</td>
+<td>Pöntunarnúmer sem söluaðili sendi inn þegar rukkun var stofnuð.</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>Tala</td>
+<td>Tímasetningin þegar rukkun lokaðist og staðan breyttist úr pending yfir í <strong>paid</strong> eða <strong>rejected</strong>. Unix tímastimpill.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>Strengur</td>
+<td>Undirritun sem söluaðili getur borið saman við til að staðfesta að svarið sé réttmætt.</td>
+</tr>
+</tbody></table>
+<h2 id='undirritun'>Undirritun</h2>
+<blockquote>
+<p>Dæmi um samsettan streng</p>
+</blockquote>
+<pre class="highlight plaintext"><code>3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422
+</code></pre>
+<blockquote>
+<p>Dæmi</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="k">**</span> Veldu forritunarmál efst á síðunni <span class="k">**</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">string</span> <span class="n">key</span> <span class="p">=</span> <span class="s">"um2JjfnJbEUJnCpjKiV94jqp"</span><span class="p">;</span>
+<span class="kt">string</span> <span class="n">body</span> <span class="p">=</span> <span class="s">"3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422"</span><span class="p">;</span>
+<span class="kt">byte</span><span class="p">[]</span> <span class="n">keyBytes</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="n">HMACSHA256</span> <span class="n">hasher</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">HMACSHA256</span><span class="p">(</span><span class="n">keyBytes</span><span class="p">);</span>
+<span class="kt">byte</span><span class="p">[]</span> <span class="n">bodyBytes</span> <span class="p">=</span> <span class="n">hasher</span><span class="p">.</span><span class="nf">ComputeHash</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">body</span><span class="p">));</span>
+<span class="kt">string</span> <span class="n">signature</span> <span class="p">=</span> <span class="n">BitConverter</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="n">bodyBytes</span><span class="p">).</span><span class="nf">Replace</span><span class="p">(</span><span class="s">"-"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
+</code></pre><pre class="highlight go tab-go"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+    </span><span class="s">"crypto/hmac"</span><span class="x">
+    </span><span class="s">"crypto/sha256"</span><span class="x">
+    </span><span class="s">"encoding/hex"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">key</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"um2JjfnJbEUJnCpjKiV94jqp"</span><span class="p">)</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">body</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="s">"3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422"</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">h</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hmac</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">sha256</span><span class="o">.</span><span class="n">New</span><span class="p">,</span><span class="x"> </span><span class="n">key</span><span class="p">)</span><span class="x">
+</span><span class="n">h</span><span class="o">.</span><span class="n">Write</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="n">body</span><span class="p">))</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">signature</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">hex</span><span class="o">.</span><span class="n">EncodeToString</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="no">nil</span><span class="p">))</span><span class="x">
+</span></code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$key</span> <span class="o">=</span> <span class="s1">'um2JjfnJbEUJnCpjKiV94jqp'</span><span class="p">;</span>
+<span class="nv">$body</span> <span class="o">=</span> <span class="nb">utf8_encode</span><span class="p">(</span><span class="s1">'3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422'</span><span class="p">);</span>
+<span class="nv">$signature</span> <span class="o">=</span> <span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nv">$body</span><span class="p">,</span> <span class="nv">$key</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'openssl'</span>
+
+<span class="n">key</span> <span class="o">=</span> <span class="s1">'um2JjfnJbEUJnCpjKiV94jqp'</span>
+<span class="n">body</span> <span class="o">=</span> <span class="s1">'3e6975e8-77cb-48b7-7722-3dfe47677bbc&amp;a917be59-f35a-478f-a5d9-19bf467972ad&amp;abc123&amp;2199&amp;paid&amp;1458748422'</span>
+<span class="n">digest</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">digest</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Dæmi um fullbúna undirritun</p>
+</blockquote>
+<pre class="highlight plaintext"><code>8022cb71924dba2e24f849fdc83596e80a3966465f6b3f1702326afa31229b11
+</code></pre>
+<p>Undirritunin er strengur sem er settur saman úr eftirfarandi einingum og síðan hashaður með HMAC SHA256 þar sem aðgangskóðinn er lykillinn.</p>
+
+<p><code>payment_id&amp;transaction_id&amp;order&amp;amount&amp;status&amp;completed</code></p>
+<h1 id='mogulegir-villukodar'>Mögulegir villukóðar</h1>
+<aside class="notice">
+Undir eðlilegum kringumstæðum skilar API alltaf HTTP 200 OK. Þessir villukóðar eiga eingöngu við um villukóða í JSON svargögnum.
+</aside>
+
+<p>Kass API styðst við eftirfarandi villukóða:</p>
+
+<table><thead>
+<tr>
+<th>Villukóði</th>
+<th>Lykill</th>
+<th>Þýddur texti</th>
+<th>Ástæða</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>merchant_not_found</td>
+<td>Söluaðili fannst ekki</td>
+<td>Rangur aðgangskóði notaður í Basic Auth.</td>
+</tr>
+<tr>
+<td>101</td>
+<td>merchant_account_locked</td>
+<td>Söluaðili ekki virkur</td>
+<td>Aðgangur söluaðila er lokaður.</td>
+</tr>
+<tr>
+<td>102</td>
+<td>merchant_signature_incorrect</td>
+<td>Undirritun ekki rétt</td>
+<td>Undirritun söluaðila á innsendum gögnum ekki rétt.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>recipient_not_found</td>
+<td>Viðtakandi fannst ekki</td>
+<td>Enginn viðtakandi fannst með símanúmerið eða notandanafnið sem sent var inn.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>merchant_cannot_be_recipient</td>
+<td>Söluaðili getur ekki verið viðtakandi</td>
+<td>Ekki er hægt að senda rukkun á söluaðila.</td>
+</tr>
+<tr>
+<td>300</td>
+<td>payment_not_found</td>
+<td>Greiðsla fannst ekki</td>
+<td>Greiðsla með uppgefnu ID fannst ekki.</td>
+</tr>
+<tr>
+<td>301</td>
+<td>payment_exceeds_limits</td>
+<td>Ekki heimild</td>
+<td>Rukkunin fer yfir leyfða heimild.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>invalid_data</td>
+<td>Innsend gögn eru ekki á réttu formi</td>
+<td>Annað hvort vantar upplýsingar í innsend JSON gögn eða hluti þeirra er á röngu formi.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>system_error</td>
+<td>Kerfisvilla - prófaðu aftur</td>
+<td>Eitthvað leiðinlegt kom upp á í Kass kerfinu.</td>
+</tr>
+</tbody></table>
+<h1 id='sandkassi-profunargogn'>Sandkassi (prófunargögn)</h1><pre class="highlight shell tab-shell"><code>curl https://api.testing.kass.is/v1/payments <span class="se">\</span>
+    -u kass_test_auth_token: <span class="se">\</span>
+    -d @payment_request.json
+</code></pre>
+<p>Hægt er að senda rukkanir á prófunarsvæði með því að nota aðgangskóðann <code>kass_test_auth_token</code>. Fyrir neðan má finna lista af símanúmerum sem senda má rukkun á og skýringu á viðbrögðum kerfisins.</p>
+<h3 id='http'>HTTP</h3>
+<p><code>POST https://api.testing.kass.is/v1/payments</code></p>
+
+<table><thead>
+<tr>
+<th>Símanúmer</th>
+<th>Skýring</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100 1000</td>
+<td>Rukkun send á þetta númer rennur út eftir 90 sekúndur.</td>
+</tr>
+<tr>
+<td>100 1001</td>
+<td>Rukkun send á þetta númer verður sjálfkrafa merkt <strong>greidd</strong>.</td>
+</tr>
+<tr>
+<td>100 1002</td>
+<td>Rukkun send á þetta númer verður sjálfkrafa merkt <strong>hafnað</strong>.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="go">go</a>
+                <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
