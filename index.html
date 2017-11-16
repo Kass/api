@@ -330,6 +330,7 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
     </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7728440"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"terminal"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/callbacks/kass"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -394,6 +395,11 @@ Mundu að skipta út <code>um2JjfnJbEUJnCpjKiV94jqp</code> fyrir þinn aðgangsk
 <td>terminal</td>
 <td>Tala</td>
 <td>Auðkenni útstöðvar eða sölustaðar. Valfrjálst svæði.</td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>Tala</td>
+<td>Gildistími rukkunar í sekúndum. Lágmark 10 sekúndur, hámark 7 dagar. Valfrjálst svæði (sjálfgefið gildi er 90 sekúndur).</td>
 </tr>
 <tr>
 <td>notify_url</td>
