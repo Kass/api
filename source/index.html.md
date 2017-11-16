@@ -51,6 +51,7 @@ curl https://api.kass.is/v1/payments \
     "order": "ABC123",
     "recipient": "7728440",
     "terminal": 1,
+    "expires_in": 90,
     "notify_url": "https://example.com/callbacks/kass"
 }
 ```
@@ -94,6 +95,7 @@ image_url | Strengur | Slóð að mynd sem geymd er á vef söluaðila. Kass app
 order | Strengur | Pöntunarnúmer sem söluaðili getur sent með. Númerið er sent til baka til kerfis söluaðila eftir að kaupandi greiðir (notify_url). Kaupandi sér ekki númerið. Valfrjálst svæði.
 recipient | Strengur | Notandanafn eða símanúmer viðtakanda. Styður aðeins einn viðtakanda í einu. Símanúmer má innihalda landkóða (+354) en þarf þess ekki.
 terminal | Tala | Auðkenni útstöðvar eða sölustaðar. Valfrjálst svæði.
+expires_in | Tala | Gildistími rukkunar í sekúndum. Lágmark 10 sekúndur, hámark 7 dagar. Valfrjálst svæði (sjálfgefið gildi er 90 sekúndur).
 notify_url | Strengur | Slóð hjá söluaðila sem Kass kerfið kallar í eftir að kaupandi hefur greitt. Sjá nánar kaflann Sjálfvirk tilkynning frá Kass.
 
 ### Skýring á svæðum í svargögnum
